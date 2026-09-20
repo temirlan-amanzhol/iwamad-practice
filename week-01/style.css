@@ -1,0 +1,133 @@
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #e9eef3;
+  color: #1c2733;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a { color: #1f4e79; font-weight: 600; text-underline-offset: 3px; }
+
+/* Header + nav */
+.site-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  background: #1f4e79;
+}
+.site-header__title { margin: 0; color: #fff; font-weight: 700; }
+.site-nav { flex-wrap: wrap; justify-content: center; }
+.site-nav a { color: #fff; text-decoration: none; }
+.site-nav a:hover { text-decoration: underline; }
+
+.site-footer { text-align: center; padding: 16px; color: #5b6b7b; }
+
+/* Main: cards stacked in one column */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 16px;
+}
+
+.card {
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  /* BORDER: thin frame around each card */
+  border: 1px solid #d5dde5;
+  /* MARGIN: space above the first card */
+  margin-top: 8px;
+  transition: background-color 0.2s, border-color 0.2s;
+  /* padding, border-radius, box-shadow moved to Tailwind: p-6 rounded-2xl shadow-lg */
+}
+
+.card h2 { margin: 0 0 12px; font-size: 1.25rem; font-weight: 700; }
+
+/* Flexbox: avatar + text (column on mobile) */
+.card__top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.avatar {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #1f4e79;
+  flex-shrink: 0;
+}
+
+.card__name { margin: 0; font-size: 1.5rem; font-weight: 700; }
+.card__role { margin: 4px 0 12px; color: #5b6b7b; font-size: 0.95rem; }
+.card__bio  { margin: 0; line-height: 1.55; }
+
+/* display:flex and gap moved to Tailwind: flex gap-3 */
+.card__links { flex-wrap: wrap; justify-content: center; margin: 20px 0; }
+
+.like-btn {
+  display: block;
+  margin: 0 auto;
+  /* PADDING: inner space of the button */
+  padding: 10px 22px;
+  border: 2px solid #c2185b;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #c2185b;
+  font-weight: 600;
+  cursor: pointer;
+}
+.like-btn:hover { background: #fdf0f5; }
+.like-btn:focus-visible,
+input:focus-visible,
+textarea:focus-visible { outline: 3px solid #1f4e79; outline-offset: 2px; }
+
+/* "Liked" state, toggled in main.js */
+.card.liked { background: #fdf0f5; border-color: #c2185b; }
+.like-btn.active { background: #c2185b; color: #ffffff; }
+
+/* Skills */
+.skills { margin: 0; padding-left: 20px; line-height: 1.8; list-style: disc; }
+
+/* Goals table: scrolls sideways on small screens */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+th, td { border: 1px solid #d5dde5; padding: 8px; text-align: left; vertical-align: top; }
+th { background: #eef3f8; }
+
+/* Contact form */
+.contact-form { display: flex; flex-direction: column; gap: 6px; }
+.contact-form label { font-weight: 600; margin-top: 8px; }
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #b8c4d0;
+  border-radius: 8px;
+  font: inherit;
+}
+.contact-form .like-btn { margin: 12px 0 0; align-self: flex-start; }
+.form-status { margin: 4px 0 0; color: #2e7d32; min-height: 1.2em; }
+
+/* Desktop */
+@media (min-width: 768px) {
+  .site-header { flex-direction: row; justify-content: space-between; padding: 16px 32px; }
+  .card { max-width: 720px; }
+  .card__top { flex-direction: row; align-items: flex-start; text-align: left; }
+  .card__links { justify-content: flex-start; }
+  #about .like-btn { margin: 0; }
+}

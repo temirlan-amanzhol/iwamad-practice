@@ -3,48 +3,108 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Week 01 - My Weby</title>
-  <meta
-    name="description"
-    content="A simple semantic HTML website created for Week 01."
-  >
+  <title>Temirlan — Responsive Profile Card</title>
+  <meta name="description" content="Personal profile page for IWaMAD Week 02: a responsive, interactive profile card built with HTML, CSS, JavaScript, Tailwind and Vite.">
+  <!-- Practice 2, Step 2: Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./style.css">
 </head>
-
 <body>
 
-  <header>
-    <h1>My Website</h1>
-
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-      </ul>
+  <header class="site-header">
+    <p class="site-header__title">Temirlan Amanzhol</p>
+    <nav class="site-nav flex gap-4" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#goals">Goals</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <main>
+    <!-- Profile card. Tailwind replaces hand-written rules: p-6 (padding), rounded-2xl (border-radius), shadow-lg (box-shadow) -->
+    <article id="about" class="card p-6 rounded-2xl shadow-lg">
+      <div class="card__top">
+        <img class="avatar" src="https://github.com/temirlan-amanzhol.png" alt="Profile photo of Temirlan" width="104" height="104">
+        <div>
+          <h1 class="card__name">Temirlan Amanzhol</h1>
+          <p class="card__role">Marketer and aspiring web developer, Almaty</p>
+          <p class="card__bio">I run NonStandrt, a small agency that makes Instagram ads, Reels and SMM for local businesses. Now I'm learning front-end development to build websites for our clients myself.</p>
+        </div>
+      </div>
 
-    <section id="about">
-      <h2>About</h2>
-      <p>
-        This is my website
-      </p>
+      <!-- Tailwind: flex (display) and gap-3 (space between links) -->
+      <nav class="card__links flex gap-3" aria-label="Contacts">
+        <a href="mailto:you@example.com">Email</a>
+        <a href="https://github.com/temirlan-amanzhol">GitHub</a>
+        <a href="https://instagram.com/nonstandrt">Instagram</a>
+      </nav>
+
+      <button id="like-btn" class="like-btn" type="button" aria-pressed="false">♡ Like</button>
+    </article>
+
+    <section id="skills" class="card p-6 rounded-2xl shadow-lg">
+      <h2>Skills</h2>
+      <ul class="skills">
+        <li>Meta / Instagram advertising</li>
+        <li>Reels and TikTok video production</li>
+        <li>SMM for small and medium businesses</li>
+        <li>HTML5 semantics and CSS layout</li>
+        <li>JavaScript basics (this week's focus)</li>
+      </ul>
     </section>
 
-    <section id="services">
-      <h2>Services</h2>
-      <p>
-        This section contains information about the services provided.
-      </p>
+    <section id="goals" class="card p-6 rounded-2xl shadow-lg">
+      <h2>Goals</h2>
+      <div class="table-wrap">
+        <table>
+          <tr>
+            <th>Area</th>
+            <th>Current level</th>
+            <th>Goal by end of semester</th>
+          </tr>
+          <tr>
+            <td>HTML &amp; CSS</td>
+            <td>Beginner</td>
+            <td>Build a full responsive site for my agency</td>
+          </tr>
+          <tr>
+            <td>JavaScript</td>
+            <td>Beginner</td>
+            <td>Add real interactivity: forms, filters, galleries</td>
+          </tr>
+          <tr>
+            <td>Deployment</td>
+            <td>GitHub Pages</td>
+            <td>Deploy client sites with Vite and Vercel</td>
+          </tr>
+        </table>
+      </div>
     </section>
 
+    <section id="contact" class="card p-6 rounded-2xl shadow-lg">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:you@example.com">tioma218@gmail.com</a></p>
+      <form id="contact-form" class="contact-form">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+
+        <button type="submit" class="like-btn">Send message</button>
+        <p id="form-status" class="form-status" aria-live="polite"></p>
+      </form>
+    </section>
   </main>
 
-  <footer>
-    <p>&copy; 2026 My Website</p>
+  <footer class="site-footer">
+    <p>&copy; 2026 Temirlan Amanzhol. Built for IWaMAD, Week 02.</p>
   </footer>
 
+  <script type="module" src="./main.js"></script>
 </body>
 </html>

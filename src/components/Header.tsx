@@ -1,25 +1,27 @@
-type NavLink = {
-  id: string
-  label: string
-  href: string
-}
+import { NavLink } from 'react-router'
+import { useLikes } from '../context/LikesContext.tsx'
+import type { NavItem } from '../types.ts'
 
 type HeaderProps = {
   title: string
-  links: NavLink[]
+  links: NavItem[]
 }
 
 function Header({ title, links }: HeaderProps) {
+  const { likes } = useLikes()
+
   return (
     <header className="site-header">
       <p className="site-header__title">{title}</p>
       <nav className="site-nav" aria-label="Main">
         {links.map((link) => (
-          <a key={link.id} href={link.href}>
+          // end: "/" should be active only on the home page, not on every page
+          <NavLink key={link.id} to={link.to} end={link.to === '/'}>
             {link.label}
-          </a>
+          </NavLink>
         ))}
       </nav>
+      <p className="header-likes">♥ {likes}</p>
     </header>
   )
 }

@@ -1,28 +1,22 @@
-import Header from './components/Header.tsx'
-import ProfileCard from './components/ProfileCard.tsx'
-import SkillItem from './components/SkillItem.tsx'
-import Footer from './components/Footer.tsx'
+import { Route, Routes } from 'react-router'
+import Layout from './components/Layout.tsx'
+import Home from './pages/Home.tsx'
+import Skills from './pages/Skills.tsx'
+import SkillDetail from './pages/SkillDetail.tsx'
+import Contact from './pages/Contact.tsx'
+import NotFound from './pages/NotFound.tsx'
+import type { ContactLink, NavItem, Skill } from './types.ts'
 
-type Skill = {
-  id: string
-  name: string
-}
-
-type Link = {
-  id: string
-  label: string
-  href: string
-}
-
-const navLinks: Link[] = [
-  { id: 'about', label: 'About', href: '#about' },
-  { id: 'skills', label: 'Skills', href: '#skills' },
-  { id: 'goals', label: 'Goals', href: '#goals' },
-  { id: 'contact', label: 'Contact', href: '#contact' },
+const navLinks: NavItem[] = [
+  { id: 'home', label: 'Home', to: '/' },
+  { id: 'skills', label: 'Skills', to: '/skills' },
+  { id: 'contact', label: 'Contact', to: '/contact' },
 ]
 
-const contactLinks: Link[] = [
-  { id: 'email', label: 'Email', href: 'mailto:tioma218@gmail.com' },
+const email = 'tioma218@gmail.com'
+
+const contactLinks: ContactLink[] = [
+  { id: 'email', label: 'Email', href: `mailto:${email}` },
   { id: 'github', label: 'GitHub', href: 'https://github.com/temirlan-amanzhol' },
   { id: 'instagram', label: 'Instagram', href: 'https://instagram.com/nonstandrt' },
 ]
@@ -33,78 +27,30 @@ const skills: Skill[] = [
   { id: 'smm', name: 'SMM for small and medium businesses' },
   { id: 'html-css', name: 'HTML5 semantics and CSS layout' },
   { id: 'javascript', name: 'JavaScript basics' },
-  { id: 'react-ts', name: 'React and TypeScript basics (this week\'s focus)' },
+  { id: 'react-ts', name: 'React and TypeScript basics' },
+  { id: 'react-router', name: 'React Router and Context (this week\'s focus)' },
 ]
 
 function App() {
   return (
-    <>
-      <Header title="Temirlan" links={navLinks} />
-
-      <main>
-        <ProfileCard
-          name="Temirlan"
-          role="Marketer and aspiring web developer, Almaty"
-          bio="I run NonStandrt, a small agency that makes Instagram ads, Reels and SMM for local businesses. Now I'm learning front-end development to build websites for our clients myself."
-          avatarUrl="https://github.com/temirlan-amanzhol.png"
-          links={contactLinks}
+    <Routes>
+      {/* One layout route: Header and Footer stay, only the <Outlet /> part changes */}
+      <Route element={<Layout title="Temirlan" navLinks={navLinks} />}>
+        <Route index element={<Home contactLinks={contactLinks} />} />
+        <Route path="skills" element={<Skills skills={skills} />} />
+        <Route path="skills/:id" element={<SkillDetail skills={skills} />} />
+        <Route
+          path="contact"
+          element={
+            <Contact
+              email={email}
+              links={contactLinks.filter((link) => link.id !== 'email')}
+            />
+          }
         />
-
-        <section id="skills" className="card">
-          <h2>Skills</h2>
-          {skills.length > 0 ? (
-            <ul className="skills">
-              {skills.map((skill) => (
-                <SkillItem key={skill.id} name={skill.name} />
-              ))}
-            </ul>
-          ) : (
-            <p className="empty-state">No skills added yet.</p>
-          )}
-        </section>
-
-        <section id="goals" className="card">
-          <h2>Goals</h2>
-          <div className="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Area</th>
-                  <th>Current level</th>
-                  <th>Goal by end of semester</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>HTML &amp; CSS</td>
-                  <td>Beginner</td>
-                  <td>Build a full responsive site for my agency</td>
-                </tr>
-                <tr>
-                  <td>JavaScript</td>
-                  <td>Beginner</td>
-                  <td>Add real interactivity: forms, filters, galleries</td>
-                </tr>
-                <tr>
-                  <td>Deployment</td>
-                  <td>GitHub Pages</td>
-                  <td>Deploy client sites with Vite and Vercel</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <section id="contact" className="card">
-          <h2>Contact</h2>
-          <p>
-            Email: <a href="mailto:tioma218@gmail.com">tioma218@gmail.com</a>
-          </p>
-        </section>
-      </main>
-
-      <Footer owner="Temirlan" year={2026} note="Built for IWaMAD, Week 03." />
-    </>
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   )
 }
 

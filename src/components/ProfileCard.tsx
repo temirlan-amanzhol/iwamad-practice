@@ -1,10 +1,6 @@
-import { useState } from 'react'
-
-type ContactLink = {
-  id: string
-  label: string
-  href: string
-}
+import { useLikes } from '../context/LikesContext.tsx'
+import LikeButton from './LikeButton.tsx'
+import type { ContactLink } from '../types.ts'
 
 type ProfileCardProps = {
   name: string
@@ -15,13 +11,10 @@ type ProfileCardProps = {
 }
 
 function ProfileCard({ name, role, bio, avatarUrl, links }: ProfileCardProps) {
-  const [liked, setLiked] = useState(false)
-
-  // Only one visitor on the page, so the count is 1 when liked and 0 otherwise
-  const likes = liked ? 1 : 0
+  const { likes } = useLikes()
 
   return (
-    <article id="about" className={liked ? 'card liked' : 'card'}>
+    <article id="about" className={likes > 0 ? 'card liked' : 'card'}>
       <div className="card__top">
         <img
           className="avatar"
@@ -37,6 +30,7 @@ function ProfileCard({ name, role, bio, avatarUrl, links }: ProfileCardProps) {
         </div>
       </div>
 
+      {/* External links stay as <a>; NavLink is only for pages inside the app */}
       <nav className="card__links" aria-label="Contacts">
         {links.map((link) => (
           <a key={link.id} href={link.href}>
@@ -46,17 +40,7 @@ function ProfileCard({ name, role, bio, avatarUrl, links }: ProfileCardProps) {
       </nav>
 
       <div className="like-row">
-        <button
-          type="button"
-          className={liked ? 'like-btn active' : 'like-btn'}
-          aria-pressed={liked}
-          onClick={() => setLiked(!liked)}
-        >
-          {liked ? '♥ Liked' : '♡ Like'}
-        </button>
-        <p className="like-count">
-          {likes} {likes === 1 ? 'like' : 'likes'}
-        </p>
+        <LikeButton />
       </div>
     </article>
   )

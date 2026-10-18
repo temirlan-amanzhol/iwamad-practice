@@ -1,0 +1,35 @@
+/* Design tokens from the Figma file "IWaMAD · SIS 2 Blog — Starter Design".
+   Figma variable names use a slash, CSS uses a dash: color/primary -> --color-primary */
+:root {
+  /* Colours */
+  --color-primary: #1d4ed8;
+  --color-on-primary: #ffffff;
+  --color-surface: #ffffff;
+  --color-border: #d1d5db;
+  --color-text: #1f2937;
+  /* Design fix: Figma has #9ca3af, only 2.54:1 on white (needs 4.5:1). #6b7280 gives 4.83:1 */
+  --color-text-muted: #6b7280;
+
+  /* Spacing */
+  --space-2: 8px;
+  --space-4: 16px;
+  --space-6: 24px;
+
+  /* Radius */
+  --radius-md: 8px;
+}
+
+/* Values that are used in the design but are not Figma variables (yet).
+   Kept here so components can still use only var(--...) */
+:root {
+  --space-3: 12px;          /* gap inside PostCard */
+  --radius-pill: 999px;     /* Tag */
+  --border-width: 1px;      /* stroke of Card, Tag, Button */
+  --size-control: 44px;     /* Button height */
+
+  --font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --text-xs: 12px;          /* Button, Tag */
+  --text-sm: 14px;          /* date / small text */
+  --text-md: 16px;          /* body, header, nav */
+  --text-lg: 20px;          /* card title */
+}

@@ -1,3 +1,5 @@
+/* Page styles. All colours, spacing and sizes come from styles/tokens.css */
+
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
@@ -6,129 +8,173 @@ h1, h2, p { margin: 0; }
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  line-height: 1.5;
-  background: #e9eef3;
-  color: #1c2733;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  font-family: var(--font-family);
+  font-size: var(--text-md);
+  line-height: 1.5;
+  background: var(--color-surface);
+  color: var(--color-text);
 }
 
-a { color: #1f4e79; font-weight: 600; text-underline-offset: 3px; }
-
-/* Header + nav */
-.site-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 16px;
-  background: #1f4e79;
-}
-.site-header__title { margin: 0; color: #fff; font-weight: 700; }
-.site-nav { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
-.site-nav a { color: #fff; text-decoration: none; padding-bottom: 2px; border-bottom: 2px solid transparent; }
-.site-nav a:hover { text-decoration: underline; }
-/* NavLink adds the "active" class to the link of the current page */
-.site-nav a.active { border-bottom-color: #fff; }
-.header-likes { margin: 0; color: #fff; font-weight: 600; }
-
-.site-footer { text-align: center; padding: 16px; color: #5b6b7b; }
-
-/* Main: cards stacked in one column */
-main {
+#root {
   flex: 1;
   display: flex;
   flex-direction: column;
+}
+
+h1, h2 { font-size: var(--text-lg); font-weight: 600; }
+
+a { color: var(--color-primary); text-underline-offset: 3px; }
+
+/* Visible keyboard focus for links, buttons and anything else focusable */
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-md);
+}
+
+/* Text for screen readers only */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ===== Header: mobile first =====
+   Phone: logo + title and likes on the first row, nav on the second row */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 20px;
-  padding: 16px;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-6);
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
 }
 
-.card {
+.site-header__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.site-nav {
+  order: 3;              /* move the nav to its own row on phones */
   width: 100%;
-  max-width: 480px;
-  background: #ffffff;
-  /* BORDER: thin frame around each card */
-  border: 1px solid #d5dde5;
-  /* MARGIN: space above the first card */
-  margin-top: 8px;
-  padding: 24px;
-  border-radius: 16px;
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  transition: background-color 0.2s, border-color 0.2s;
+  display: flex;
+  gap: var(--space-4);
 }
 
-.card h2 { margin: 0 0 12px; font-size: 1.25rem; font-weight: 700; }
+.site-nav a { text-decoration: none; }
+.site-nav a:hover { text-decoration: underline; }
+/* NavLink adds the "active" class to the link of the current page */
+.site-nav a.active {
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
 
-/* Flexbox: avatar + text (column on mobile) */
-.card__top {
+.header-likes { color: var(--color-text-muted); }
+
+/* ===== Main ===== */
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4);
+}
+
+main > .card { max-width: 720px; margin: 0 auto; }
+
+/* Phone: one column */
+.page-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+/* ===== Profile card ===== */
+.profile {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: var(--space-4);
   text-align: center;
 }
 
-.avatar {
+.profile__avatar {
   width: 104px;
   height: 104px;
   border-radius: 50%;
+  border: 3px solid var(--color-primary);
   object-fit: cover;
-  border: 3px solid #1f4e79;
-  flex-shrink: 0;
 }
 
-.card__name { margin: 0; font-size: 1.5rem; font-weight: 700; }
-.card__role { margin: 4px 0 12px; color: #5b6b7b; font-size: 0.95rem; }
-.card__bio  { margin: 0; line-height: 1.55; }
+.profile__role { margin: var(--space-2) 0; color: var(--color-text-muted); font-size: var(--text-sm); }
 
-.card__links { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin: 20px 0; }
-
-.like-row { display: flex; align-items: center; justify-content: center; gap: 12px; }
-.like-count { margin: 0; color: #5b6b7b; }
-.like-row .like-btn { margin: 0; }
-
-.like-btn {
-  display: block;
-  margin: 0 auto;
-  /* PADDING: inner space of the button */
-  padding: 10px 22px;
-  border: 2px solid #c2185b;
-  border-radius: 999px;
-  background: #ffffff;
-  color: #c2185b;
-  font: inherit;
-  font-weight: 600;
-  cursor: pointer;
+.profile__links,
+.profile__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
 }
-.like-btn:hover { background: #fdf0f5; }
-.like-btn:focus-visible,
-a:focus-visible { outline: 3px solid #1f4e79; outline-offset: 2px; }
 
-/* "Liked" state: shown once the card has at least one like */
-.card.liked { background: #fdf0f5; border-color: #c2185b; }
-.like-btn.active { background: #c2185b; color: #ffffff; }
+/* ===== Lists ===== */
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
-/* Skills */
-.skills { margin: 0; padding-left: 20px; line-height: 1.8; list-style: disc; }
-.empty-state { color: #5b6b7b; font-style: italic; }
-.skills a { text-decoration: none; }
-.skills a:hover { text-decoration: underline; }
-.back-link { margin-top: 16px; }
+.skill-badge { display: inline-block; border-radius: var(--radius-pill); text-decoration: none; }
+.skill-badge:hover .tag { border-color: var(--color-primary); }
 
-/* Goals table: scrolls sideways on small screens */
+.link-list { margin: 0; padding-left: var(--space-6); }
+
+.empty-state { color: var(--color-text-muted); font-style: italic; }
+
+.back-link { margin-top: var(--space-2); }
+
+/* ===== Goals table: scrolls sideways on small screens ===== */
 .table-wrap { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
-th, td { border: 1px solid #d5dde5; padding: 8px; text-align: left; vertical-align: top; }
-th { background: #eef3f8; }
+table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+th, td { padding: var(--space-2); border: 1px solid var(--color-border); text-align: left; vertical-align: top; }
 
-/* Desktop */
+/* ===== Footer ===== */
+.site-footer {
+  padding: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  text-align: center;
+}
+
+/* ===== Bigger screens ===== */
 @media (min-width: 768px) {
-  .site-header { flex-direction: row; justify-content: space-between; padding: 16px 32px; }
-  .card { max-width: 720px; }
-  .card__top { flex-direction: row; align-items: flex-start; text-align: left; }
-  .card__links { justify-content: flex-start; }
-  .like-row { justify-content: flex-start; }
+  /* Header: everything in one row, like the Figma Header */
+  .site-header { padding: var(--space-6) var(--space-4); flex-wrap: nowrap; }
+  .site-nav { order: 0; width: auto; margin-left: auto; }
+
+  .profile { flex-direction: row; align-items: flex-start; text-align: left; }
+  .profile__links,
+  .profile__actions { justify-content: flex-start; }
+}
+
+@media (min-width: 900px) {
+  /* Home: profile and goals side by side */
+  .page-grid { grid-template-columns: 1fr 1fr; }
 }

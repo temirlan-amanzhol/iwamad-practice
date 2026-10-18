@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router'
 import { useLikes } from '../context/LikesContext.tsx'
+import logo from '../assets/logo.svg'
 import type { NavItem } from '../types.ts'
 
 type HeaderProps = {
@@ -12,7 +13,12 @@ function Header({ title, links }: HeaderProps) {
 
   return (
     <header className="site-header">
-      <p className="site-header__title">{title}</p>
+      <NavLink className="site-header__brand" to="/">
+        {/* Empty alt: the title next to the logo already says what the link is */}
+        <img src={logo} alt="" width="32" height="32" />
+        <span>{title}</span>
+      </NavLink>
+
       <nav className="site-nav" aria-label="Main">
         {links.map((link) => (
           // end: "/" should be active only on the home page, not on every page
@@ -21,7 +27,11 @@ function Header({ title, links }: HeaderProps) {
           </NavLink>
         ))}
       </nav>
-      <p className="header-likes">♥ {likes}</p>
+
+      <p className="header-likes">
+        <span aria-hidden="true">♥</span> {likes}
+        <span className="visually-hidden"> likes</span>
+      </p>
     </header>
   )
 }

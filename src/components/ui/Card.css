@@ -1,0 +1,16 @@
+/* Based on PostCard: column, gap 12px, padding 16px, radius 8px */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.card--highlighted {
+  border-color: var(--color-primary);
+}

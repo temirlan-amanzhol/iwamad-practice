@@ -1,0 +1,22 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--size-control);
+  padding: 0 var(--space-2);
+  border: var(--border-width) solid var(--color-primary);
+  border-radius: var(--radius-md);
+  font: inherit;
+  font-size: var(--text-xs);
+  cursor: pointer;
+}
+
+.button--primary {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.button--secondary {
+  background: var(--color-surface);
+  color: var(--color-primary);
+}

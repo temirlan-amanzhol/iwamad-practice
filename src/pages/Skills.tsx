@@ -1,5 +1,6 @@
-import SkillItem from '../components/SkillItem.tsx'
+import SkillBadge from '../components/SkillBadge.tsx'
 import type { Skill } from '../types.ts'
+import Card from '../components/ui/Card.tsx'
 
 type SkillsProps = {
   skills: Skill[]
@@ -7,18 +8,18 @@ type SkillsProps = {
 
 function Skills({ skills }: SkillsProps) {
   return (
-    <section className="card">
+    <Card>
       <h2>Skills</h2>
       {skills.length > 0 ? (
-        <ul className="skills">
+        <ul className="skill-list">
           {skills.map((skill) => (
-            <SkillItem key={skill.id} id={skill.id} name={skill.name} />
+            <SkillBadge key={skill.id} id={skill.id} name={skill.name} />
           ))}
         </ul>
       ) : (
         <p className="empty-state">No skills added yet.</p>
       )}
-    </section>
+    </Card>
   )
 }
 

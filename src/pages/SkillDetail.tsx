@@ -1,5 +1,6 @@
 import { NavLink, useParams } from 'react-router'
 import type { Skill } from '../types.ts'
+import Card from '../components/ui/Card.tsx'
 
 type SkillDetailProps = {
   skills: Skill[]
@@ -11,18 +12,18 @@ function SkillDetail({ skills }: SkillDetailProps) {
 
   if (index === -1) {
     return (
-      <section className="card">
+      <Card>
         <h2>Skill not found</h2>
         <p>There is no skill with id "{id}".</p>
         <p className="back-link">
           <NavLink to="/skills">← Back to skills</NavLink>
         </p>
-      </section>
+      </Card>
     )
   }
 
   return (
-    <section className="card">
+    <Card>
       <h2>{skills[index].name}</h2>
       <p>
         Skill {index + 1} of {skills.length}
@@ -30,7 +31,7 @@ function SkillDetail({ skills }: SkillDetailProps) {
       <p className="back-link">
         <NavLink to="/skills">← Back to skills</NavLink>
       </p>
-    </section>
+    </Card>
   )
 }
 

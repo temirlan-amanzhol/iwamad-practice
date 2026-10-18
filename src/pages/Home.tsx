@@ -1,5 +1,6 @@
 import ProfileCard from '../components/ProfileCard.tsx'
 import type { ContactLink } from '../types.ts'
+import Card from '../components/ui/Card.tsx'
 
 type HomeProps = {
   contactLinks: ContactLink[]
@@ -7,7 +8,7 @@ type HomeProps = {
 
 function Home({ contactLinks }: HomeProps) {
   return (
-    <>
+    <div className="page-grid">
       <ProfileCard
         name="Temirlan"
         role="Marketer and aspiring web developer, Almaty"
@@ -16,7 +17,7 @@ function Home({ contactLinks }: HomeProps) {
         links={contactLinks}
       />
 
-      <section className="card">
+      <Card>
         <h2>Goals</h2>
         <div className="table-wrap">
           <table>
@@ -46,8 +47,8 @@ function Home({ contactLinks }: HomeProps) {
             </tbody>
           </table>
         </div>
-      </section>
-    </>
+      </Card>
+    </div>
   )
 }
 

@@ -4,6 +4,8 @@ Profile card for the IWaMAD course, built with React + TypeScript + Vite.
 Week 04 added pages (React Router), shared likes state (Context) and the first test (Vitest).
 Week 05 adds a small design system from the SIS 2 Figma design: tokens in `src/styles/tokens.css`,
 UI components `Button`, `Card`, `Tag` in `src/components/ui/`, and handoff notes in `design/HANDOFF.md`.
+Week 06 adds a Register page (`/register`): a controlled form, the pure function
+`validateRegistration` in `src/lib/` with eight tests, and an accessible `TextField` in `src/components/ui/`.
 
 ## Scripts
 
@@ -17,7 +19,7 @@ npm run build    # type check + production build into docs/ (+ docs/404.html)
 
 ## Branches
 
-- `week-01` … `week-05` — work for each week.
-- GitHub Pages is published from `week-05`, folder `/docs`.
+- `week-01` … `week-06` — work for each week.
+- GitHub Pages is published from `week-06`, folder `/docs`.
 
 Live site: https://temirlan-amanzhol.github.io/iwamad-practice/

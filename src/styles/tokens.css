@@ -26,6 +26,7 @@
   --radius-pill: 999px;     /* Tag */
   --border-width: 1px;      /* stroke of Card, Tag, Button */
   --size-control: 44px;     /* Button height */
+  --color-error: #b91c1c;   /* form errors, 6.47:1 on white */
 
   --font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --text-xs: 12px;          /* Button, Tag */

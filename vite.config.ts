@@ -7,7 +7,7 @@ export default defineConfig({
   // Site is served from https://temirlan-amanzhol.github.io/iwamad-practice/
   base: '/iwamad-practice/',
   build: {
-    // GitHub Pages publishes the /docs folder of the week-04 branch
+    // GitHub Pages publishes the /docs folder of the current week branch (week-06)
     outDir: 'docs',
   },
   test: {

@@ -5,12 +5,14 @@ import Skills from './pages/Skills.tsx'
 import SkillDetail from './pages/SkillDetail.tsx'
 import Contact from './pages/Contact.tsx'
 import NotFound from './pages/NotFound.tsx'
+import RegisterPage from './pages/RegisterPage.tsx'
 import type { ContactLink, NavItem, Skill } from './types.ts'
 
 const navLinks: NavItem[] = [
   { id: 'home', label: 'Home', to: '/' },
   { id: 'skills', label: 'Skills', to: '/skills' },
   { id: 'contact', label: 'Contact', to: '/contact' },
+  { id: 'register', label: 'Register', to: '/register' },
 ]
 
 const email = 'tioma218@gmail.com'
@@ -28,7 +30,8 @@ const skills: Skill[] = [
   { id: 'html-css', name: 'HTML5 semantics and CSS layout' },
   { id: 'javascript', name: 'JavaScript basics' },
   { id: 'react-ts', name: 'React and TypeScript basics' },
-  { id: 'react-router', name: 'React Router and Context (this week\'s focus)' },
+  { id: 'react-router', name: 'React Router and Context' },
+  { id: 'react-forms', name: 'Controlled forms and validation (this week\'s focus)' },
 ]
 
 function App() {
@@ -48,6 +51,7 @@ function App() {
             />
           }
         />
+        <Route path="register" element={<RegisterPage />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

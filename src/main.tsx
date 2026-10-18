@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router'
 import { LikesProvider } from './context/LikesContext.tsx'
 import './styles/tokens.css'
+import './styles/ui.css'
 import './style.css'
 import App from './App.tsx'
 

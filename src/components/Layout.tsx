@@ -15,7 +15,7 @@ function Layout({ title, navLinks }: LayoutProps) {
       <main>
         <Outlet />
       </main>
-      <Footer owner={title} year={2026} note="Built for IWaMAD, Week 06." />
+      <Footer owner={title} year={2026} note="Built for IWaMAD, Week 07." />
     </>
   )
 }

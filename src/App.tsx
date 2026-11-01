@@ -6,11 +6,14 @@ import SkillDetail from './pages/SkillDetail.tsx'
 import Contact from './pages/Contact.tsx'
 import NotFound from './pages/NotFound.tsx'
 import RegisterPage from './pages/RegisterPage.tsx'
+import EventsPage from './pages/EventsPage.tsx'
+import EventDetailsPage from './pages/EventDetailsPage.tsx'
 import type { ContactLink, NavItem, Skill } from './types.ts'
 
 const navLinks: NavItem[] = [
   { id: 'home', label: 'Home', to: '/' },
   { id: 'skills', label: 'Skills', to: '/skills' },
+  { id: 'events', label: 'Events', to: '/events' },
   { id: 'contact', label: 'Contact', to: '/contact' },
   { id: 'register', label: 'Register', to: '/register' },
 ]
@@ -52,6 +55,8 @@ function App() {
           }
         />
         <Route path="register" element={<RegisterPage />} />
+        <Route path="events" element={<EventsPage />} />
+        <Route path="events/:eventId" element={<EventDetailsPage />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

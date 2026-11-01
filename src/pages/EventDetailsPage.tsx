@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router'
 import Card from '../components/ui/Card.tsx'
+import EventSignupForm from '../components/EventSignupForm.tsx'
 import { events } from '../data/events.ts'
 import { formatDate } from '../lib/formatDate.ts'
 
@@ -26,6 +27,8 @@ function EventDetailsPage() {
       <p>
         <time dateTime={event.date}>{formatDate(event.date)}</time> · {event.place}
       </p>
+      {/* key: a different event gets a fresh form with its own seats */}
+      <EventSignupForm key={event.id} event={event} />
       <p className="back-link">
         <Link to="/events">← Back to events</Link>
       </p>
